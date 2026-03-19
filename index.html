@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berzerk Tech</title>
+
+    <!--
+        Descrição básica do site para navegador e mecanismos de busca.
+        Se no futuro o foco do negócio mudar, ajuste este texto primeiro.
+    -->
+    <meta
+        name="description"
+        content="Berzerk Tech - Soluções tecnológicas inovadoras, suporte, desenvolvimento web e presença digital."
+    >
+
+    <!--
+        Folha de estilos principal.
+        Toda a parte visual dos cards com imagem no fundo da seção 'Sobre'
+        foi preparada no arquivo berzek.css.
+    -->
+    <link rel="stylesheet" href="berzek.css">
+</head>
+<body>
+
+    <!--
+        HEADER / MENU PRINCIPAL
+
+        Manutenção:
+        - Os links abaixo são internos e apontam para seções da própria página.
+        - O botão "Entre em contato" no topo leva para a seção de contato.
+        - Se quiser trocar a navegação por links externos, ajuste apenas os href.
+    -->
+    <header class="header" id="topo">
+        <div class="container header_content">
+            <a class="brand" href="#topo" aria-label="Página inicial">
+                <!--
+                    Logo opcional.
+                    Para reativar, remova o comentário abaixo e confirme
+                    se o caminho da imagem continua correto.
+                -->
+                <!-- <img src="imagens/logoberzek.jpeg" alt="Logo da Berzerk Tech" class="logo"> -->
+                <span class="brand_name">Berzek Tech</span>
+            </a>
+
+            <nav class="nav" aria-label="Menu de navegação">
+                <button class="nav_toggle" aria-expanded="false" aria-label="Abrir menu">Menu</button>
+
+                <ul class="nav_list" id="navMenu">
+                    <li class="nav_item"><a href="#servicos" class="nav_link">Serviços</a></li>
+                    <li class="nav_item"><a href="#sobre" class="nav_link">Sobre</a></li>
+                    <li class="nav_item"><a href="#contato" class="nav_link">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="header_cta">
+                <a class="btn btn-primary" href="#contato">Entre em contato</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!--
+            HERO / PRIMEIRA DOBRA
+
+            Manutenção:
+            - O botão de WhatsApp usa link direto wa.me.
+            - O botão de AnyDesk aponta para a página oficial de download.
+            - A imagem principal exibida à direita está em imagens/fotoinse.jpg.
+            - Se quiser trocar a imagem principal, altere apenas o src abaixo.
+        -->
+        <section class="hero">
+            <div class="container hero_content">
+                <div class="hero_copy">
+                    <span class="hero_kicker">Tecnologia, suporte e presença digital</span>
+
+                    <h1 class="hero_title">Bem-vindo à Berzek Tech</h1>
+
+                    <p class="hero_description">
+                        Soluções tecnológicas inovadoras para impulsionar seu negócio
+                        com eficiência, segurança e qualidade.
+                    </p>
+
+                    <div class="hero_actions">
+                        <ul>
+                            <li>
+                                <a class="btn btn-primary" href="#servicos">Nossos Serviços</a>
+                            </li>
+                            <li>
+                                <!--
+                                    Link direto para abrir conversa no WhatsApp.
+                                    Número atual: 55 62 98117-7849
+                                -->
+                                <a class="btn btn--ghost" href="https://wa.me/5562981177849" target="_blank" rel="noopener">
+                                    WhatsApp
+                                </a>
+                            </li>
+                            <li>
+                                <!--
+                                    Download oficial do AnyDesk.
+                                    Se quiser apontar para outro link, troque somente o href.
+                                -->
+                                <a class="btn btn--ghost btn--long" href="https://anydesk.com/pt/downloads/windows" target="_blank" rel="noopener">
+                                    Baixar AnyDesk
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="hero_media" aria-hidden="true">
+                    <div class="hero_media_main">
+                        <img
+                            src="imagens/saladecomputador.jpg"
+                            alt="Ambiente tecnológico da Berzerk Tech"
+                            class="minhafoto"
+                            style="width: 600px;"
+                        >
+                    </div>
+
+                    <!--
+                        Área reservada para uma segunda imagem decorativa.
+                        Está comentada porque hoje o layout usa apenas a imagem principal.
+                    -->
+                    <!--
+                    <div class="hero_media_card">
+                        <img src="imagens/laptop.jpg" alt="Notebook com iluminação neon" class="hero_side_image">
+                    </div>
+                    -->
+                </div>
+            </div>
+        </section>
+
+        <!--
+            DESTAQUE DE DESENVOLVIMENTO WEB
+
+            Manutenção:
+            - Esta seção apresenta serviços digitais em formato de cards simples.
+            - Os textos podem ser alterados livremente sem impacto estrutural.
+        -->
+        <section class="highlight" id="destaque-web">
+            <div class="container">
+                <header class="section_header">
+                    <h2>Desenvolvimento Web</h2>
+                    <p>Criação de sites, lojas virtuais, redes sociais e marketing digital para fortalecer sua presença online.</p>
+                </header>
+
+                <div class="grid grid--4">
+                    <article class="card">
+                        <h3>Criação de Sites</h3>
+                        <p>Criamos sites e aplicações web personalizados para impulsionar sua presença online.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Redes Sociais</h3>
+                        <p>Gerenciamos suas redes sociais para aumentar o engajamento e alcançar seu público-alvo.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Lojas Virtuais</h3>
+                        <p>Desenvolvemos lojas virtuais completas para que você possa vender seus produtos online.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Marketing Digital</h3>
+                        <p>Oferecemos estratégias de marketing digital para aumentar sua visibilidade e atrair mais clientes.</p>
+                    </article>
+                </div>
+
+                <div class="section-actions">
+                    <a class="btn btn-primary" href="#contato">Saiba mais</a>
+                    <a class="btn btn--ghost" href="#servicos">Portfólio</a>
+                </div>
+            </div>
+        </section>
+
+        <!--
+            SERVIÇOS DE SUPORTE E INFRAESTRUTURA
+
+            Manutenção:
+            - O botão "Solicitar orçamento" abre o WhatsApp.
+            - O botão "Baixar AnyDesk" abre o site oficial do programa.
+            - Para trocar o número do WhatsApp, atualize todos os links wa.me da página.
+        -->
+        <section class="services" id="servicos">
+            <div class="container">
+                <header class="section_header">
+                    <h2>Serviços</h2>
+                    <p>Oferecemos uma variedade de serviços para atender às suas necessidades tecnológicas.</p>
+                </header>
+
+                <div class="grid grid--3">
+                    <article class="service_card">
+                        <h3>Manutenção de Computadores e Notebooks</h3>
+                        <p>Realizamos manutenção preventiva e corretiva para garantir o funcionamento ideal dos equipamentos.</p>
+                    </article>
+
+                    <article class="service_card">
+                        <h3>Assistência Remota</h3>
+                        <p>Oferecemos suporte técnico rápido e eficiente para resolver seus problemas tecnológicos.</p>
+                    </article>
+
+                    <article class="service_card">
+                        <h3>Contratos de Manutenção</h3>
+                        <p>Oferecemos contratos de manutenção para garantir o funcionamento contínuo dos seus equipamentos.</p>
+                    </article>
+
+                    <article class="service_card">
+                        <h3>Redes Locais (Cabeada e Wi-Fi)</h3>
+                        <p>Instalamos e configuramos redes locais para garantir conectividade e segurança em sua empresa.</p>
+                    </article>
+
+                    <article class="service_card">
+                        <h3>Remoção de Vírus e Malware</h3>
+                        <p>Protegemos seus dispositivos com serviços de limpeza, segurança e prevenção digital.</p>
+                    </article>
+
+                    <article class="service_card">
+                        <h3>Desenvolvimento Personalizado</h3>
+                        <p>Criamos soluções personalizadas para atender às necessidades específicas do seu negócio.</p>
+                    </article>
+                </div>
+
+                <div class="section-actions">
+                    <a class="btn btn-primary" href="https://wa.me/5562981177849" target="_blank" rel="noopener">
+                        Solicitar orçamento
+                    </a>
+                    <a class="btn btn--ghost" href="https://anydesk.com/pt/downloads/windows" target="_blank" rel="noopener">
+                        Baixar AnyDesk
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!--
+            SEÇÃO SOBRE
+
+            Alteração importante:
+            - Cada card recebeu classes extras do tipo about-card--...
+            - Essas classes não mudam o conteúdo, apenas informam ao CSS qual imagem
+              de fundo deve ser aplicada em cada card.
+            - O texto continua no HTML e a imagem fica controlada pelo CSS.
+
+            Classes usadas:
+            - about-card--who     => card "Quem Somos"
+            - about-card--mission => card "Missão"
+            - about-card--vision  => card "Visão"
+            - about-card--values  => card "Valores"
+        -->
+        <section class="about" id="sobre">
+            <div class="container">
+                <header class="section_header">
+                    <h2>Sobre Nós</h2>
+                    <p>Conheça a Berzerk Tech e nossa missão de fornecer soluções tecnológicas inovadoras.</p>
+                </header>
+
+                <div class="grid grid--2">
+                    <!--
+                        Card principal com imagem de fundo.
+                        A imagem está definida no CSS pela classe about-card--who.
+                    -->
+                    <article class="card about-card about-card--who">
+                        <h3>Quem Somos</h3>
+                        <p>Na <strong>Berzeck Tech</strong>, não apenas consertamos máquinas; garantimos que seus dados estejam sempre seguros. Nascemos com a missão de elevar o padrão de assistência técnica em informática, unindo <strong>rigor técnico</strong> com um atendimento humano e transparente.</p>
+                        <p>Acreditamos que a tecnologia deve ser um acelerador de resultados, não um obstáculo. Por isso, nossa equipe é especializada em diagnósticos precisos e intervenções de alto desempenho, atendendo desde usuários domésticos até infraestruturas corporativas.</p>
+                    </article>
+
+                    <div class="stack">
+                        <!--
+                            Card com imagem de fundo controlada no CSS.
+                            Ideal para editar somente texto aqui e manter visual separado.
+                        -->
+                        <article class="card about-card about-card--mission">
+                            <h3>Missão</h3>
+                            <p>Capacitar empresas e indivíduos a alcançar seus objetivos por meio da tecnologia, com soluções personalizadas e eficientes.</p>
+                        </article>
+
+                        <article class="card about-card about-card--vision">
+                            <h3>Visão</h3>
+                            <p>Ser reconhecida como referência em tecnologia, inovação, qualidade e compromisso com o sucesso dos clientes.</p>
+                        </article>
+
+                        <article class="card about-card about-card--values">
+                            <h3>Valores</h3>
+                            <p>Inovação, qualidade, compromisso, ética e foco no cliente guiam todas as nossas ações e decisões.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--
+            PLANOS
+
+            Manutenção:
+            - Os botões ainda estão como placeholder com href="#".
+            - Se no futuro houver página de contratação ou checkout, troque cada href.
+        -->
+        <section class="plans" id="planos">
+            <div class="container">
+                <header class="section_header">
+                    <h2>Resolva o problema do seu computador remotamente</h2>
+                    <p>Selecione o seu plano</p>
+                </header>
+
+                <div class="grid grid--4">
+                    <article class="plan">
+                        <h3>Plano Básico</h3>
+                        <p class="plan__subtitle">Telefone & Remoto</p>
+                        <p class="plan__price">R$ 150,00 <small>/ mês</small></p>
+                        <ul class="list">
+                            <li>Suporte remoto essencial</li>
+                            <li>Atendimento por telefone</li>
+                            <li>Suporte inicial</li>
+                        </ul>
+                        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Assinar</a>
+                    </article>
+
+                    <article class="plan">
+                        <h3>Plano Médio</h3>
+                        <p class="plan__subtitle">Telefone & Remoto</p>
+                        <p class="plan__price">R$ 250,00 <small>/ mês</small></p>
+                        <ul class="list">
+                            <li>Suporte mais completo</li>
+                            <li>Atendimento prioritário</li>
+                            <li>Monitoramento básico</li>
+                        </ul>
+                        <a class="btn btn-primary" href="#" rel="noopener">Assinar</a>
+                    </article>
+
+                    <article class="plan">
+                        <h3>Plano Avançado</h3>
+                        <p class="plan__subtitle">Local, Telefone & Remoto</p>
+                        <p class="plan__price">R$ 800,00 <small>/ mês</small></p>
+                        <ul class="list">
+                            <li>Suporte local e remoto</li>
+                            <li>Maior cobertura</li>
+                            <li>Atendimento especializado</li>
+                        </ul>
+                        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Assinar</a>
+                    </article>
+
+                    <article class="plan">
+                        <h3>Plano Master</h3>
+                        <p class="plan__subtitle">Sob consulta</p>
+                        <p class="plan__price">Consultar</p>
+                        <ul class="list">
+                            <li>Solução personalizada</li>
+                            <li>Atendimento premium</li>
+                        </ul>
+                        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Consultar</a>
+                    </article>
+                </div>
+
+                <p class="fineprint">Observações, raio de cobertura, fidelidade e condições podem ser ajustados conforme a necessidade.</p>
+            </div>
+        </section>
+
+        <!--
+            CLIENTES E PARCEIROS
+
+            Manutenção:
+            - Hoje os logos e nomes estão genéricos.
+            - Você pode trocar "Cliente 1", "Cliente 2" etc. sem precisar alterar o CSS.
+        -->
+        <section class="clients" id="clientes">
+            <div class="container">
+                <header class="section_header">
+                    <h2>Clientes e Parceiros</h2>
+                    <p>Algumas marcas atendidas e parceiras.</p>
+                </header>
+
+                <div class="grid grid--4">
+                    <figure class="client">
+                        <div class="client__logo">Logo</div>
+                        <figcaption>
+                            <strong>Cliente 1</strong>
+                            <span class="rating" aria-label="Avaliação 4 de 5">★★★★☆</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="client">
+                        <div class="client__logo">Logo</div>
+                        <figcaption>
+                            <strong>Cliente 2</strong>
+                            <span class="rating" aria-label="Avaliação 4 de 5">★★★★☆</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="client">
+                        <div class="client__logo">Logo</div>
+                        <figcaption>
+                            <strong>Cliente 3</strong>
+                            <span class="rating" aria-label="Avaliação 5 de 5">★★★★★</span>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="client">
+                        <div class="client__logo">Logo</div>
+                        <figcaption>
+                            <strong>Cliente 4</strong>
+                            <span class="rating" aria-label="Avaliação 4 de 5">★★★★☆</span>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!--
+            CONTATO
+
+            Alterações aplicadas:
+            - WhatsApp oficial da página configurado nos botões.
+            - AnyDesk configurado com link oficial.
+            - Telefone e e-mail exibidos para contato direto.
+
+            Observação:
+            - O formulário ainda não envia dados para lugar nenhum porque action="#".
+            - Se quiser que envie e-mail ou mensagem para backend, será preciso integrar depois.
+        -->
+        <section class="contact" id="contato">
+            <div class="container">
+                <header class="section_header">
+                    <h2>Contato</h2>
+                    <p>Peça um orçamento ou tire dúvidas.</p>
+                </header>
+
+                <div class="grid grid--2">
+                    <form class="form" action="#" method="post">
+                        <label>
+                            Nome
+                            <input type="text" name="nome" required>
+                        </label>
+
+                        <label>
+                            E-mail
+                            <input type="email" name="email" required>
+                        </label>
+
+                        <label>
+                            Assunto
+                            <input type="text" name="assunto">
+                        </label>
+
+                        <label>
+                            Mensagem
+                            <textarea name="mensagem" rows="6" required></textarea>
+                        </label>
+
+                        <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+                    </form>
+
+                    <aside class="contact__info">
+                        <h3>Informações</h3>
+                        <p>📍 Goiânia - GO</p>
+                        <p>📞 (62) 9 8117-7849</p>
+                        <p>💬 WhatsApp: (62) 9 8117-7849</p>
+                        <p>✉️ berzektech@gmail.com</p>
+
+                        <div class="contact__actions">
+                            <a class="btn btn--ghost" href="https://wa.me/5562981177849" target="_blank" rel="noopener">
+                                WhatsApp
+                            </a>
+                            <a class="btn btn--ghost" href="https://anydesk.com/pt/downloads/windows" target="_blank" rel="noopener">
+                                AnyDesk
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--
+        RODAPÉ
+
+        Manutenção:
+        - O ano é preenchido pelo JavaScript do arquivo berzek.js.
+        - Se quiser texto extra no rodapé, adicione dentro de footer__content.
+    -->
+    <footer class="footer">
+        <div class="container footer__content">
+            <p>© <span id="year"></span> Berzek Tech. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script principal do site -->
+    <script src="berzek.js"></script>
+</body>
+</html>
