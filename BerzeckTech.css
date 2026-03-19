@@ -1,0 +1,1000 @@
+/* =========================================================
+   RESET
+========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /*
+       VARIAVEIS GLOBAIS DE TEMA
+
+       Manutencao:
+       - As cores principais do site ficam centralizadas aqui.
+       - Se quiser mudar a identidade visual inteira do projeto,
+         comece por este bloco.
+       - Os raios de borda, largura do container e altura do header
+         tambem ficam definidos aqui para evitar valores soltos.
+    */
+    --bg-main: #020307;
+    --bg-soft: #06131a;
+    --bg-soft-2: #081a24;
+    --card-bg: rgba(7, 15, 24, 0.78);
+
+    --text-main: #f4f8ff;
+    --text-soft: #a6b8ca;
+
+    --cyan: #16dfff;
+    --cyan-2: #42bfff;
+    --purple: #8a4dff;
+    --pink: #ff1681;
+
+    --border-soft: rgba(255, 255, 255, 0.08);
+
+    --shadow-main: 0 20px 60px rgba(0, 0, 0, 0.45);
+    --glow-cyan: 0 0 25px rgba(22, 223, 255, 0.18);
+
+    --radius-xl: 30px;
+    --radius-lg: 24px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
+
+    --container-width: 1240px;
+    --header-height: 88px;
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+html {
+    /* Faz a navegacao por links internos subir/descer suavemente */
+    scroll-behavior: smooth;
+}
+
+body {
+    /*
+       FUNDO GERAL DO SITE
+
+       O visual usa duas luzes radiais + um gradiente vertical.
+       Para simplificar o visual no futuro, pode trocar este bloco
+       por uma unica cor de background.
+    */
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(circle at top left, rgba(22, 223, 255, 0.08), transparent 24%),
+        radial-gradient(circle at top right, rgba(138, 77, 255, 0.08), transparent 22%),
+        linear-gradient(180deg, #0f1b33 0%, #0c2d43 48%, #03070d 100%);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    /*
+       Container padrao para centralizar conteudo.
+       A largura maxima do site e controlada pela variavel
+       --container-width definida em :root.
+    */
+    width: min(100% - 40px, var(--container-width));
+    margin: 0 auto;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.header {
+    /*
+       Header fixo no topo.
+
+       Manutencao:
+       - position: fixed mantem o menu sempre visivel.
+       - backdrop-filter cria o efeito de vidro.
+       - is-scrolled e is-hidden sao estados que podem ser controlados via JS.
+    */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: var(--header-height);
+    z-index: 1000;
+    background: rgba(3, 8, 16, 0.68);
+    border-bottom: 1px solid rgba(22, 223, 255, 0.08);
+    backdrop-filter: blur(16px);
+    transition:
+        transform 0.42s ease,
+        background 0.30s ease,
+        box-shadow 0.30s ease,
+        border-color 0.30s ease;
+}
+
+.header.is-scrolled {
+    background: rgba(3, 8, 16, 0.92);
+    box-shadow: var(--shadow-main);
+    border-bottom: 1px solid rgba(22, 223, 255, 0.14);
+}
+
+.header.is-hidden {
+    transform: translateY(-100%);
+}
+
+.header_content {
+    /* Organiza logo, navegacao e CTA na mesma linha */
+    min-height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    /* Agrupa logo e nome da marca */
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.logo {
+    /* Estilo padrao caso a imagem da logo seja reativada no HTML */
+    width: 68px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 1px solid rgba(22, 223, 255, 0.12);
+    box-shadow: var(--glow-cyan);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.brand_name {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.nav {
+    /* Bloco geral da navegacao horizontal */
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-left: auto;
+}
+
+.nav_toggle {
+    /*
+       Botao do menu mobile.
+       No desktop ele fica escondido e aparece apenas no breakpoint menor.
+    */
+    display: none;
+}
+
+.nav_list {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav_link {
+    /*
+       Link do menu com linha animada no hover.
+       O tracado inferior e desenhado pelo pseudo-elemento ::after.
+    */
+    position: relative;
+    color: var(--text-soft);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.25s ease;
+}
+
+.nav_link:hover {
+    color: var(--text-main);
+}
+
+.nav_link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -9px;
+    width: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    transition: width 0.28s ease;
+}
+
+.nav_link:hover::after {
+    width: 100%;
+}
+
+.header_cta {
+    /* Area reservada para o botao principal do topo */
+    display: flex;
+    align-items: center;
+}
+
+/* =========================================================
+   BOTÕES
+========================================================= */
+.btn {
+    /*
+       Classe base de todos os botoes.
+
+       Manutencao:
+       - Ajuste aqui altura, espacamento e tipografia de todos os botoes.
+       - Variacoes visuais ficam nas classes derivadas abaixo.
+    */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.28s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.btn-primary {
+    /* Botao principal com gradiente mais chamativo */
+    background: linear-gradient(135deg, var(--cyan-2), var(--purple));
+    color: #04111a;
+    box-shadow:
+        0 12px 30px rgba(22, 223, 255, 0.16),
+        0 12px 30px rgba(138, 77, 255, 0.14);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 16px 38px rgba(22, 223, 255, 0.22),
+        0 16px 38px rgba(138, 77, 255, 0.18);
+}
+
+.btn--ghost {
+    /* Botao secundario com transparencia e borda leve */
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(22, 223, 255, 0.16);
+    color: var(--text-main);
+    backdrop-filter: blur(10px);
+}
+
+.btn--ghost:hover {
+    transform: translateY(-3px);
+    border-color: rgba(22, 223, 255, 0.34);
+    box-shadow: var(--glow-cyan);
+}
+
+.btn--long {
+    /* Usado quando o texto do botao precisa de mais largura */
+    min-width: 240px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero {
+    /*
+       Secao principal de entrada.
+
+       Manutencao:
+       - O fundo atual combina gradiente escuro com imagem.
+       - Se trocar a foto de fundo, ajuste a url abaixo.
+       - O espacamento superior considera o header fixo.
+    */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 150px 0 90px;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(90deg, rgba(1, 5, 8, 0.97) 0%, rgba(2, 9, 14, 0.88) 36%, rgba(0, 0, 0, 0.24) 100%),
+        url("imagens/saladecomputador.jpg") center/cover no-repeat;
+}
+
+.hero::before {
+    /* Luz decorativa no canto superior esquerdo */
+    content: "";
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    left: -120px;
+    top: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(22, 223, 255, 0.16), transparent 70%);
+    filter: blur(40px);
+}
+
+.hero::after {
+    /* Luz decorativa no canto inferior direito */
+    content: "";
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    right: -90px;
+    bottom: -40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 22, 129, 0.12), transparent 70%);
+    filter: blur(40px);
+}
+
+.hero_content {
+    /*
+       Divide hero em duas colunas:
+       - texto a esquerda
+       - imagem a direita
+    */
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(320px, 430px) minmax(460px, 1fr);
+    align-items: center;
+    gap: 56px;
+}
+
+.hero_copy {
+    /* Coluna textual do hero */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.hero_kicker {
+    /* Etiqueta pequena acima do titulo principal */
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 16px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--cyan);
+    background: rgba(22, 223, 255, 0.08);
+    border: 1px solid rgba(22, 223, 255, 0.14);
+}
+
+.hero_title {
+    /*
+       Titulo principal com clamp para escalar entre telas.
+       O max-width curto ajuda a manter impacto visual.
+    */
+    font-size: clamp(3.4rem, 7vw, 6rem);
+    line-height: 0.93;
+    font-weight: 800;
+    letter-spacing: -1px;
+    max-width: 7.5ch;
+}
+
+.hero_description {
+    /* Texto de apoio do hero */
+    font-size: 1.12rem;
+    line-height: 1.9;
+    color: var(--text-soft);
+    max-width: 32ch;
+}
+
+.hero_actions {
+    /* Grupo de botoes do hero */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    width: 100%;
+}
+
+.hero_actions .btn {
+    min-width: 260px;
+    justify-content: center;
+}
+
+/* =========================================================
+   HERO MEDIA - DUAS IMAGENS ALINHADAS
+========================================================= */
+.hero_media {
+    /*
+       Coluna visual do hero.
+       Mantem a imagem alinhada para a direita em telas grandes.
+    */
+    position: relative;
+    width: 100%;
+    min-height: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.hero_media_main {
+    /* Moldura da imagem principal do hero */
+    width: 78%;
+    height: 720px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(22, 223, 255, 0.14);
+    box-shadow: var(--shadow-main);
+}
+
+.minhafoto {
+    /* Garante que a imagem preencha o card sem distorcer */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero_media_card {
+    /*
+       Segunda imagem opcional do hero.
+       Hoje esta prevista no CSS, mas pode continuar desativada no HTML.
+    */
+    position: absolute;
+    left: -20px;
+    bottom: 40px;
+    width: 250px;
+    height: 430px;
+    border-radius: 26px;
+    overflow: hidden;
+    border: 1px solid rgba(138, 77, 255, 0.22);
+    background: rgba(7, 15, 24, 0.72);
+    box-shadow:
+        0 24px 50px rgba(0, 0, 0, 0.42),
+        0 0 26px rgba(138, 77, 255, 0.14);
+}
+
+.hero_side_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+section {
+    /*
+       Espacamento vertical padrao entre secoes.
+       Se o site parecer muito "alto", reduza este valor.
+    */
+    padding: 96px 0;
+    position: relative;
+}
+
+.section_header,
+.section-header {
+    /* Cabecalho padrao de cada secao */
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 42px;
+}
+
+.section_header h2,
+.section-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 12px;
+}
+
+.section_header p,
+.section-header p {
+    color: var(--text-soft);
+    font-size: 1.03rem;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+.grid {
+    /*
+       Base dos grids reutilizaveis.
+       As classes grid--2, grid--3 e grid--4 definem quantas colunas serao usadas.
+    */
+    display: grid;
+    gap: 24px;
+}
+
+.grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+.card,
+.service_card,
+.plan,
+.client,
+.contact__info,
+.form {
+    /*
+       Visual base compartilhado entre blocos em formato de card.
+       Isso ajuda a manter consistencia no projeto inteiro.
+    */
+    background: linear-gradient(180deg, rgba(8, 17, 28, 0.86), rgba(7, 12, 20, 0.94));
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-main);
+    backdrop-filter: blur(14px);
+}
+
+.card,
+.service_card,
+.plan,
+.client,
+.contact__info {
+    /* Hover padrao para destacar cards interativos */
+    padding: 28px;
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.card:hover,
+.service_card:hover,
+.plan:hover,
+.client:hover,
+.contact__info:hover {
+    transform: translateY(-8px);
+    border-color: rgba(22, 223, 255, 0.22);
+    box-shadow:
+        var(--shadow-main),
+        0 0 28px rgba(22, 223, 255, 0.12);
+}
+
+.card h3,
+.service_card h3,
+.plan h3,
+.contact__info h3 {
+    margin-bottom: 10px;
+    font-size: 1.18rem;
+}
+
+.card p,
+.service_card p,
+.plan p,
+.contact__info p {
+    color: var(--text-soft);
+}
+
+.stack {
+    /*
+       Empilha cards verticalmente.
+       Na secao "Sobre", esse bloco segura Missao, Visao e Valores.
+    */
+    display: grid;
+    gap: 20px;
+}
+
+/*
+   CARDS DA SEÇÃO "SOBRE" COM IMAGEM DE FUNDO
+
+   Como funciona:
+   - A classe base .about-card ativa o modo "card com foto no fundo".
+   - Cada variação abaixo define a imagem via variável CSS:
+     .about-card--who
+     .about-card--mission
+     .about-card--vision
+     .about-card--values
+   - O overlay escuro é aplicado para manter o texto legível sobre a foto.
+
+   Manutenção:
+   - Para trocar uma imagem, altere apenas a URL da classe correspondente.
+   - Para escurecer mais ou menos o fundo, ajuste os rgba() do background
+     e do ::before.
+*/
+.about-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 240px;
+    color: var(--text-main);
+    background:
+        linear-gradient(180deg, rgba(3, 10, 18, 0.34), rgba(2, 6, 12, 0.82)),
+        var(--about-card-image) center/cover no-repeat;
+}
+
+.about-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(2, 7, 14, 0.08) 0%, rgba(2, 7, 14, 0.55) 55%, rgba(2, 7, 14, 0.88) 100%);
+}
+
+.about-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.about-card h3,
+.about-card p,
+.about-card strong {
+    color: #f7fbff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+.about-card p {
+    color: rgba(247, 251, 255, 0.9);
+}
+
+/* Imagem do card "Quem Somos" */
+.about-card--who {
+    --about-card-image: url("imagens/fotoinse.jpg");
+}
+
+/* Imagem do card "Missão" */
+.about-card--mission {
+    --about-card-image: url("imagens/fotodehd.jpg");
+}
+
+/* Imagem do card "Visão" */
+.about-card--vision {
+    --about-card-image: url("imagens/fototable.jpg");
+}
+
+/* Imagem do card "Valores" */
+.about-card--values {
+    --about-card-image: url("imagens/teladenoot.jpg");
+}
+
+.section-actions {
+    /* Linha de botoes de acao abaixo de uma secao */
+    margin-top: 34px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.plan {
+    /* Card de plano com faixa superior decorativa */
+    position: relative;
+    overflow: hidden;
+}
+
+.plan::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--cyan), var(--pink), var(--purple));
+}
+
+.plan__subtitle {
+    /* Subtitulo curto usado nos planos */
+    color: var(--cyan) !important;
+    margin-bottom: 10px;
+}
+
+.plan__price {
+    /* Preco em destaque maior */
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main) !important;
+    margin-bottom: 18px;
+}
+
+.list {
+    /* Lista vertical usada principalmente nos cards de planos */
+    display: grid;
+    gap: 10px;
+    margin: 20px 0 24px;
+}
+
+.list li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--text-soft);
+}
+
+.list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--cyan);
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+.fineprint {
+    /* Texto pequeno de observacoes abaixo dos planos */
+    margin-top: 20px;
+    text-align: center;
+    color: var(--text-soft);
+}
+
+.client {
+    /* Card de cliente/parceiro centralizado */
+    text-align: center;
+}
+
+.client__logo {
+    /*
+       Caixa provisoria para logo.
+       Pode ser substituida por img no HTML sem necessidade de reestruturar o CSS.
+    */
+    min-height: 110px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(22, 223, 255, 0.14);
+    margin-bottom: 14px;
+}
+
+.rating {
+    /* Estrelas de avaliacao */
+    margin-top: 8px;
+    color: #ffd166;
+    letter-spacing: 2px;
+}
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+.form {
+    /*
+       Formulario principal de contato.
+       O layout e simples para facilitar integracao futura com backend.
+    */
+    padding: 30px;
+    display: grid;
+    gap: 18px;
+}
+
+.form label {
+    /* Cada campo e empilhado com rotulo acima */
+    display: grid;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.form input,
+.form textarea {
+    /*
+       Campos com visual coerente ao restante do site.
+       Se quiser um formulario mais claro ou mais escuro, ajuste aqui.
+    */
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-main);
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+    /* Destaque ao focar no campo para melhorar usabilidade */
+    border-color: rgba(22, 223, 255, 0.42);
+    box-shadow: 0 0 0 4px rgba(22, 223, 255, 0.08);
+}
+
+.contact__actions {
+    /* Grupo de botoes de contato dentro da lateral */
+    margin-top: 18px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.footer {
+    /* Rodape escuro para encerrar a pagina */
+    padding: 28px 0;
+    background: rgba(2, 4, 8, 0.94);
+    border-top: 1px solid rgba(22, 223, 255, 0.08);
+}
+
+.footer__content {
+    /* Organiza os itens do rodape na horizontal */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.footer p,
+.footer a {
+    color: var(--text-soft);
+}
+
+.footer a:hover {
+    color: var(--cyan);
+}
+
+.modal {
+    /*
+       Reserva para modal futuro.
+       Hoje permanece desativado.
+    */
+    display: none;
+}
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+@media (max-width: 1180px) {
+    /*
+       Breakpoint intermediario.
+       Aqui o hero deixa de ser duas colunas rigidas e fica mais flexivel.
+    */
+    .hero_content {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .hero_title {
+        max-width: 100%;
+    }
+
+    .hero_description {
+        max-width: 60ch;
+    }
+
+    .hero_actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .hero_actions .btn {
+        min-width: unset;
+    }
+
+    .hero_media {
+        min-height: auto;
+        justify-content: center;
+    }
+
+    .hero_media_main {
+        width: 100%;
+        height: 500px;
+    }
+
+    .hero_media_card {
+        width: 220px;
+        height: 360px;
+        left: -10px;
+        bottom: 20px;
+    }
+
+    .grid--4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid--3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 860px) {
+    /*
+       Breakpoint mobile principal.
+
+       Ajustes importantes:
+       - menu vira empilhado
+       - grids viram uma coluna
+       - botoes ocupam largura total
+       - imagem do hero reduz altura
+    */
+    .header_content {
+        flex-wrap: wrap;
+        padding: 14px 0;
+    }
+
+    .nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .nav_toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(22, 223, 255, 0.16);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-main);
+        cursor: pointer;
+    }
+
+    .nav_list {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding-top: 16px;
+    }
+
+    .nav_list.is-open {
+        display: flex;
+    }
+
+    .header_cta {
+        width: 100%;
+    }
+
+    .header_cta .btn {
+        width: 100%;
+    }
+
+    .grid--2,
+    .grid--3,
+    .grid--4 {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 140px 0 74px;
+        min-height: auto;
+    }
+
+    .hero_title {
+        font-size: clamp(2.6rem, 11vw, 4.3rem);
+        line-height: 0.98;
+    }
+
+    .hero_description {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    .hero_actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero_actions .btn {
+        width: 100%;
+    }
+
+    .hero_media_main {
+        height: 320px;
+    }
+
+    .hero_media_card {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+        max-width: 280px;
+        height: 220px;
+        margin: 20px auto 0;
+    }
+
+    section {
+        padding: 72px 0;
+    }
+}
